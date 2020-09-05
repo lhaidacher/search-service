@@ -1,5 +1,6 @@
 package at.fhj.swd.searchservice;
 
+import at.fhj.swd.searchservice.service.impl.SearchServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SearchServiceApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void foo() {
+        new SearchServiceImpl().fancyMethodToReduceCoverage();
     }
 
 }
