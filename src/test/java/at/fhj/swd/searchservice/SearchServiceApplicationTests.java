@@ -12,4 +12,14 @@ class SearchServiceApplicationTests {
         new SearchServiceImpl().fancyMethodToReduceCoverage();
     }
 
+    @Test
+    public void bar() {
+        new SearchServiceImpl().getArticles("et");
+    }
+
+    @Test
+    public void foobar() {
+        new SearchServiceImpl().getTrendingKeywords();
+    }
+
 }
