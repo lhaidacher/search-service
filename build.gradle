@@ -51,3 +51,10 @@ test {
 processResources {
     ["banner.txt"].each { filesMatching(it) { filter ReplaceTokens, tokens: ["app.version": rootProject.version] } }
 }
+
+sonarqube {
+    properties {
+        property("sonar.projectKey", "search-service")
+        property("sonar.buildbreaker.skip", "false")
+    }
+}

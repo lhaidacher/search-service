@@ -18,11 +18,10 @@ jobs:
       - name: Gradle build
         uses: eskatos/gradle-command-action@v1
         env:
-          PROJ: search-service
           URL: ${{ secrets.SONARQUBE_HOST }}
           TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         with:
-          arguments: sonarqube -Dsonar.projectKey=${{ env.PROJ }} -Dsonar.host.url=${{ env.URL }} -Dsonar.login=${{ env.TOKEN }}
+          arguments: sonarqube -Dsonar.host.url=${{ env.URL }} -Dsonar.login=${{ env.TOKEN }}
       #- name: SonarQube Scan
       #  uses: kitabisa/sonarqube-action@master
       #  with:
