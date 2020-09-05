@@ -13,17 +13,21 @@ import java.util.Set;
 public class SearchServiceImpl implements SearchService {
     @Override
     public List<Article> getArticles(String keyword) {
-        return new ArrayList<Article>() {{
-            add(new Article(131L, "iPhone"));
-            add(new Article(34L, "Meine süße Laura <3"));
-        }};
+        List<Article> articles = new ArrayList<>();
+
+        articles.add(new Article(131L, "iPhone"));
+        articles.add(new Article(34L, "Meine süße Laura <3"));
+
+        return articles;
     }
 
     @Override
     public Set<String> getTrendingKeywords() {
-        return new HashSet<String>() {{
-            add("MacBook");
-            add("iPhone");
-        }};
+        Set<String> trends = new HashSet<>();
+
+        trends.add("MacBook");
+        trends.add("iPhone");
+
+        return trends;
     }
 }

@@ -5,12 +5,16 @@ on:
     branches: [ master ]
 
 jobs:
-  sonar-analysis:
-    name: SonarQube analysis # TODO add on all jobs
+  code-analysis:
+    name: Code-analysis with SonarQube
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
+      #- name: Execute tests
+      #  uses: eskatos/gradle-command-action@v1
+      #  with:
+      #    arguments: test
       - name: Gradle build
         uses: eskatos/gradle-command-action@v1
         env:
@@ -18,13 +22,14 @@ jobs:
           URL: ${{ secrets.SONARQUBE_HOST }}
           TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         with:
-          arguments: sonarqube -Dsonar.projectKey=${{ env.PROJ }} -Dsonar.host.url=${{ env.URL }} -Dsonar.login=${{ env.ROKEN }}
+          arguments: sonarqube -Dsonar.projectKey=${{ env.PROJ }} -Dsonar.host.url=${{ env.URL }} -Dsonar.login=${{ env.TOKEN }}
       #- name: SonarQube Scan
       #  uses: kitabisa/sonarqube-action@master
       #  with:
       #    host: ${{ secrets.SONARQUBE_HOST }}
       #    login: ${{ secrets.SONARQUBE_TOKEN }}
-  build:
+  build-container:
+    name: Build and push Container
     runs-on: ubuntu-latest
     needs: sonar-analysis
     steps:
@@ -39,10 +44,6 @@ jobs:
         uses: eskatos/gradle-command-action@v1
         with:
           arguments: build
-      #- name: Execute tests
-      #  uses: eskatos/gradle-command-action@v1
-      #  with:
-      #    arguments: test
       - name: Build and push Docker images
         uses: docker/build-push-action@v1
         with:
@@ -51,7 +52,8 @@ jobs:
           registry: harbor.lhaidacher.com/onlineshop
           repository: search-service
           tag_with_sha: true
-  update-deployment-repository:
+  update-deployment:
+    name: Update deployment repository
     needs: build
     runs-on: ubuntu-latest
     steps:
