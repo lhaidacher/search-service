@@ -10,11 +10,6 @@ import org.springframework.util.Assert;
 class SearchServiceApplicationTests {
 
     @Test
-    public void foo() {
-        new SearchServiceImpl().fancyMethodToReduceCoverage();
-    }
-
-    @Test
     public void bar() {
         new SearchServiceImpl().getArticles("et");
     }
@@ -22,11 +17,6 @@ class SearchServiceApplicationTests {
     @Test
     public void foobar() {
         new SearchServiceImpl().getTrendingKeywords();
-    }
-
-    @Test
-    public void barfoo() {
-        Assertions.fail();
     }
 
 }

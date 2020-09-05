@@ -30,16 +30,4 @@ public class SearchServiceImpl implements SearchService {
 
         return trends;
     }
-
-    public void fancyMethodToReduceCoverage() {
-        Set<String> trends = new HashSet<>();
-
-        trends.add("MacBook");
-        trends.add("iPhone");
-
-        List<Article> articles = new ArrayList<>();
-
-        articles.add(new Article(131L, "iPhone"));
-        articles.add(new Article(34L, "Meine süße Laura <3"));
-    }
 }
