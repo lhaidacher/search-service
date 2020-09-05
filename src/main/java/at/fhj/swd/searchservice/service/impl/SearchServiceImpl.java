@@ -15,6 +15,7 @@ public class SearchServiceImpl implements SearchService {
     public List<Article> getArticles(String keyword) {
         return new ArrayList<Article>() {{
             add(new Article(131L, "iPhone"));
+            add(new Article(34L, "Meine süße Laura <3"));
         }};
     }
 
