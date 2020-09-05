@@ -18,6 +18,7 @@ public class SearchServiceImpl implements SearchService {
             add(new Article(34345L, "MacBook"));
             add(new Article(1235L, "Apple TV"));
             add(new Article(1235L, "New Toy TV"));
+            add(new Article(1235L, "Laura's Nagellack"));
         }};
     }
 
