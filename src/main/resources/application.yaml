@@ -27,4 +27,4 @@ server:
 at:
   fhj:
     swd:
-      inventory-service: inventory-service:8090
+      inventory-service: inventory-service
