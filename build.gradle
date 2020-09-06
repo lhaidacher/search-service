@@ -63,7 +63,7 @@ test.finalizedBy jacocoTestReport
 
 sonarqube {
     properties {
-        property("sonar.projectKey", "search-service")
+        property("sonar.projectKey", project.name)
         property("sonar.buildbreaker.skip", "false")
     }
 }
