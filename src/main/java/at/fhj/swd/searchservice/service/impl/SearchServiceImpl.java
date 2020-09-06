@@ -1,33 +1,36 @@
 package at.fhj.swd.searchservice.service.impl;
 
 import at.fhj.swd.searchservice.domain.Article;
+import at.fhj.swd.searchservice.domain.SearchResult;
+import at.fhj.swd.searchservice.domain.Trend;
+import at.fhj.swd.searchservice.repository.TrendRepository;
 import at.fhj.swd.searchservice.service.SearchService;
+import at.fhj.swd.searchservice.service.impl.inventory.InventoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
 public class SearchServiceImpl implements SearchService {
-    @Override
-    public List<Article> getArticles(String keyword) {
-        List<Article> articles = new ArrayList<>();
+    private InventoryService service;
+    private TrendRepository repository;
 
-        articles.add(new Article(131L, "iPhone"));
-        articles.add(new Article(34L, "Meine süße Laura <3"));
-
-        return articles;
+    @Autowired
+    public SearchServiceImpl(InventoryService service, TrendRepository repository) {
+        this.service = service;
+        this.repository = repository;
     }
 
     @Override
-    public Set<String> getTrendingKeywords() {
-        Set<String> trends = new HashSet<>();
+    public SearchResult search(String keyword) {
+        Set<Article> articles = service.getArticles(keyword);
+        repository.save(Trend.generate(keyword, articles.size()));
+        return SearchResult.generate(keyword, articles);
+    }
 
-        trends.add("MacBook");
-        trends.add("iPhone");
-
-        return trends;
+    @Override
+    public Set<Trend> getTrendingKeywords() {
+        return repository.findAll();
     }
 }

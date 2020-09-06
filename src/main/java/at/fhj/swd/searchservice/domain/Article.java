@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Article {
-    private Long id;
+    private String ean;
     private String name;
+    private String description;
+    private String price;
 }

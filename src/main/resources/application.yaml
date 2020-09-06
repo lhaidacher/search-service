@@ -1,1 +1,30 @@
-
+# ===================================================================
+# APPLICATION PROPERTIES
+# ===================================================================
+spring:
+  application:
+    name: search-service
+---
+# ===================================================================
+# Default / Localhost PROPERTIES
+# ===================================================================
+spring:
+  profiles: default
+server:
+  port: 8091
+at:
+  fhj:
+    swd:
+      inventory-service: localhost:8090
+---
+# ===================================================================
+# Production PROPERTIES
+# ===================================================================
+spring:
+  profiles: production
+server:
+  port: 8080
+at:
+  fhj:
+    swd:
+      inventory-service: inventory-service

@@ -1,6 +1,7 @@
 package at.fhj.swd.searchservice.controller;
 
-import at.fhj.swd.searchservice.domain.Article;
+import at.fhj.swd.searchservice.domain.SearchResult;
+import at.fhj.swd.searchservice.domain.Trend;
 import at.fhj.swd.searchservice.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,12 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Set;
 
-
 @RestController
-@RequestMapping("/articles")
+@RequestMapping("/searches")
 public class SearchController {
     private SearchService service;
 
@@ -24,12 +23,12 @@ public class SearchController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Article> articles(@RequestParam("keyword") String keyword) {
-        return service.getArticles(keyword);
+    public SearchResult articles(@RequestParam("keyword") String keyword) {
+        return service.search(keyword);
     }
 
     @GetMapping(path = "/trends", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Set<String> trends() {
+    public Set<Trend> trends() {
         return service.getTrendingKeywords();
     }
 }

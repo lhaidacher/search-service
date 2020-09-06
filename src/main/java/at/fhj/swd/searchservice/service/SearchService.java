@@ -1,12 +1,12 @@
 package at.fhj.swd.searchservice.service;
 
-import at.fhj.swd.searchservice.domain.Article;
+import at.fhj.swd.searchservice.domain.SearchResult;
+import at.fhj.swd.searchservice.domain.Trend;
 
-import java.util.List;
 import java.util.Set;
 
 public interface SearchService {
-    List<Article> getArticles(String keyword);
+    SearchResult search(String keyword);
 
-    Set<String> getTrendingKeywords();
+    Set<Trend> getTrendingKeywords();
 }
