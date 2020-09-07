@@ -18,6 +18,8 @@ public class TrendRepositoryImpl implements TrendRepository {
 
     @Override
     public Set<Trend> findAll() {
-        return trends;
+        return new HashSet<Trend>() {{
+            add(Trend.generate("asd", 3));
+        }};
     }
 }
