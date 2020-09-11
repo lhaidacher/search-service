@@ -6,8 +6,8 @@ on:
       - master
 
 jobs:
-  code-analysis:
-    name: Code-analysis with SonarQube
+  unit-tests:
+    name: Unit-tests with Gradle
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -16,6 +16,12 @@ jobs:
         uses: eskatos/gradle-command-action@v1
         with:
           arguments: test
+  code-analysis:
+    name: Code-analysis with SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
       - name: Analyis code
         uses: eskatos/gradle-command-action@v1
         env:
@@ -25,4 +31,3 @@ jobs:
           arguments: sonarqube
             -Dsonar.host.url=${{ env.URL }}
             -Dsonar.login=${{ env.TOKEN }}
-            -Dsonar.branch.name=feature/upgrade-dependencies
