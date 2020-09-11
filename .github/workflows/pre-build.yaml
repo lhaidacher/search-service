@@ -22,7 +22,7 @@ jobs:
           URL: ${{ secrets.SONARQUBE_HOST }}
           TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         with:
-          arguments: sonarqube |
-            -Dsonar.host.url=${{ env.URL }} |
-            -Dsonar.login=${{ env.TOKEN }} |
+          arguments: sonarqube
+            -Dsonar.host.url=${{ env.URL }}
+            -Dsonar.login=${{ env.TOKEN }}
             -Dsonar.branch.name=feature/upgrade-dependencies
