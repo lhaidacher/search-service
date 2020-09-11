@@ -7,7 +7,7 @@ on:
 
 jobs:
   unit-tests:
-    name: Unit-tests with Gradle
+    name: Unit-testing with Gradle
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
