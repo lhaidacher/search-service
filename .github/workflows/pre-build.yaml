@@ -7,7 +7,7 @@ on:
 
 jobs:
   unit-tests:
-    name: Unit-tests with Gradle
+    name: Unit-testing
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -17,7 +17,7 @@ jobs:
         with:
           arguments: test
   code-analysis:
-    name: Code-analysis with SonarQube
+    name: Code-analysis
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
