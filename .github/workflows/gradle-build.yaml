@@ -11,16 +11,16 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Install JVM
+      - name: Install jdk
         uses: actions/setup-java@v1
         with:
           java-version: 8
           java-package: jdk
-      - name: Gradle build
+      - name: Build jar
         uses: eskatos/gradle-command-action@v1
         with:
           arguments: build
-      - name: Build and push Docker images
+      - name: Build and push images
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.HARBOR_USERNAME }}
@@ -39,7 +39,7 @@ jobs:
           repository: lhaidacher/search-service-chart
           ref: master
           token: ${{ secrets.GIT_TOKEN }}
-      - name: Get Git commit SHA
+      - name: Get commit SHA
         uses: benjlevesque/short-sha@v1.1
         with:
           length: 7
@@ -56,7 +56,7 @@ jobs:
           echo -e "appVersion: 'sha-${{ env.SHA }}'" >> Chart.yaml &&
           cat Chart.yaml
           rm Chart.old.yaml
-      - name: push
+      - name: Push changes
         uses: github-actions-x/commit@v2.7
         env:
           SHA: ${{ env.SHA }}
@@ -72,4 +72,5 @@ jobs:
     needs: update-deployment
     runs-on: ubuntu-latest
     steps:
-      - runs: echo "stored runtime metrics"
+      - name: Publish metrics
+        run: echo 'The selected color is' $SELECTED_COLOR
