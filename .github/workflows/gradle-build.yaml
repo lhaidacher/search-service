@@ -43,10 +43,6 @@ jobs:
         uses: benjlevesque/short-sha@v1.1
         with:
           length: 7
-      #- name: Lint helm chart
-      #  uses: helm/chart-testing-action@v1.0.0
-      #  with:
-      #    command: lint
       - name: Update app version
         env:
           SHA: ${{ env.SHA }}
@@ -56,6 +52,10 @@ jobs:
           echo -e "appVersion: 'sha-${{ env.SHA }}'" >> Chart.yaml &&
           cat Chart.yaml
           rm Chart.old.yaml
+     # - name: Lint helm chart
+     #   uses: helm/chart-testing-action@v1.0.0
+     #   with:
+     #     command: lint
       - name: Push changes
         uses: github-actions-x/commit@v2.7
         env:
@@ -74,3 +74,14 @@ jobs:
     steps:
       - name: Publish metrics
         run: echo 'The selected color is' $SELECTED_COLOR
+     # - uses: floric/repo-monitor-action@v1.4.1
+     #   name: Update Report
+     #   with:
+     #     key: code-size
+     #     value: ${{ steps.projectmetrics.outputs.code_size }}
+     #     token: ${{ secrets.GITHUB_TOKEN }}
+     # - uses: someimportantcompany/github-actions-slack-message@v1
+     #   with:
+     #     channel: ${{ secrets.SLACK_CHANNEL }}
+     #     bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+     #     text: GitOps CI war erfolgreich
