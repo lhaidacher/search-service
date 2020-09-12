@@ -27,6 +27,7 @@ public class SearchController {
         return service.search(keyword);
     }
 
+    @Deprecated
     @GetMapping(path = "/trends", produces = MediaType.APPLICATION_JSON_VALUE)
     public Set<Trend> trends() {
         return service.getTrendingKeywords();
